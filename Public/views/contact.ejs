@@ -1,0 +1,69 @@
+<%- include('includes/header') %>
+
+<section class="contact-section" id="contact">
+    <div class="contact-top pt-5">
+        <div class="container py-md-3">
+            <div class="row contact-main">
+                <div class="contact-info col-lg-4">
+                    <div class="info-box">
+                        <div class="info-item">
+                            <span class="fa fa-map-marker"></span>
+                            <div>
+                                <h4>Direccion:</h4>
+                                <p>Centro Comercial Av.Chile</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="fa fa-envelope"></span>
+                            <div>
+                                <h4>Email:</h4>
+                                <p><a href="mailto:contacto@bijouterieshopper.com">contacto@bijouterieshopper.com</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="fa fa-phone"></span>
+                            <div>
+                                <h4>Phone:</h4>
+                                <p><a href="tel:+34123456789">+34 123 456 789</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form col-lg-8 mt-5">
+                    <% if (message) { %>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                Swal.fire({
+                                    title: 'Mensaje recibido con éxito!',
+                                    text: '<%= message %>',
+                                    icon: '<%= message.includes("Error") ? "error" : "success" %>',
+                                    confirmButtonText: 'Cerrar'
+                                }).then((result) => {
+                                    if(result.isConfirmed) {
+                                        window.location.href = '/contact';
+                                    }
+                                });
+                            });
+                        </script>
+                    <% } %>
+                    <form action="/submitContacto" method="post" class="main-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Name" name="nombre" id="nombre" required>
+                            <input type="email" name="email" placeholder="Email" id="email" required>
+                        </div>
+                        <input type="text" placeholder="Phone Number" name="telefono" id="telefono" required>
+                        <textarea placeholder="Message" name="mensaje" id="mensaje" required></textarea>
+                        <button type="submit" class="btn btn-primary">Submit Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158857.7281066703!2d-0.24168144921176335!3d51.5287718408761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sin!4v1569921526194!5m2!1sen!2sin"
+                frameborder="0" style="border:0;" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+<%- include('includes/footer') %>
